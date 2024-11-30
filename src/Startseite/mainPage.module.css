@@ -8,3 +8,23 @@
     align-items: center;
 }
 
+.hauptContainer h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.hauptContainer button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hauptContainer button:hover {
+    background-color: #0056b3;
+}
+

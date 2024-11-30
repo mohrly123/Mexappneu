@@ -46,6 +46,12 @@ input {
     width: 100%;
 }
 
+input::placeholder {
+    color: #888;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
 .ergebnisContainer {
     width: 100%;
     max-width: 500px;
