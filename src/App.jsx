@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <Router>
+      <Router basename="/Mexappneu">
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/hebungsrechner' element={<Hebungsrechner />} />
