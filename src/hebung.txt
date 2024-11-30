@@ -1,0 +1,9 @@
+SOLLHEBUNG = 500 mm
+ISTHEBUNG = 600 mm
+AWERT = 0mm
+
+Wenn Ist größer Soll = 600 - 500 = 100 mm Hebung
+Wenn Soll größer Ist = 500 - 600 = -100 mm zu hoch
+wenn Soll == Ist = 500 == 500 = 0mm Hebung 
+
+--------------------------------------------------
