@@ -2,74 +2,92 @@ import { useState } from "react";
 import styles from "./hebungsrechner.module.css";
 
 export default function Hebungsrechner() {
-  //Abgelesener Wert = ohne Vorzeichen = Schwarz
-  //Abgelesener Wert = mit - Vorzeichen = Rot
-  //AWert ohne Vorzeichen = Positiv also Kuppe
-  //AWert mit - Vorzeichen = Negativ also Mulde
-  let ergebnis = 0;
-  //Refferenzieren auf den eingegeben Wert
+
+  
   const [istWert, setIstWert] = useState("");
-  const [dialogVisible, setDialogVisible] = useState(false);
-  const [result, setResult] = useState("");
-
-  const abfrageIstWert = (event) => {
-    setIstWert(Number(event.target.value));
-  };
-  // Referenzieren auf den A Wert  im Input
   const [aWert, setAwert] = useState("");
+  const [ergebnis, setErgebnis] = useState(0);
+  const [dialogVisible, setDialogVisible] = useState(false);
+  const [anzeigeErgebnis, setAnzeigeErgebnis] = useState("");
 
-  const abfrageAwert = (event) => {
-    setAwert(Number(event.target.value));
-  };
+  // Programm selbst
+  function programm(){
+    checkEingabe();     // schauen ob die inputs nicht leer sind
+    checkAWert();       // schauen ob der A Wert negativ oder positiv ist
+  }
 
-  //Wenn A Wert vorhanden (muss vorhanden sein) zuerst schauen ob der Wert unter 0 oder über 0
-  // Wenn er über 0 ist dann subtrahieren
-  // Wenn er unter 0 ist dann addieren
-  // Wenn er 0 ist dann Alert das Wert zum eingeben ist
-  const berechnung = () => {
-    try {
-      // Ergebnis referenzieren
-      
-      console.log(`Ist Wert: ${istWert}`);
-      console.log(`A Wert: ${aWert}`);
-      // Beide Inputs müssen ausgefüllt werden
-      if (istWert !== "" && aWert !== "") {
-        // Dann überprüfen ob der A Wert positiv oder negativ ist
-        if (aWert < 0) {
-          // Wenn der A wert unter 0 ist dann zum ist Wert addieren
-          ergebnis = istWert + aWert; // Ergebnis aktualisieren
-          console.log(`Hebung = ${ergebnis} mm`); // In der Konsole ausgeben
-        } else if (aWert > 0) {
-          // Wenn der A Wert über 0 ist zum Ist wert subtrahieren
-          ergebnis = istWert - aWert; // Ergebnis aktualisieren
-          console.log(`Hebung = ${ergebnis} mm`); // In der Konsole ausgeben
-        }
-        if (ergebnis < 0) {
-          // Wenn das Ergebnis negativ ist bin ich zu hoch
-          console.log(`Um ${Math.abs(ergebnis)} mm zu Hoch!`);
-          setDialogVisible(true);
-          setResult(`Um ${Math.abs(ergebnis)} mm zu Hoch!`);
-        } else if (ergebnis > 0) {
-          // Wenn Ergebnis poitiv dann Habe ich Hebung
-          console.log(`Hebung = ${ergebnis} mm`);
-          setDialogVisible(true);
-          setResult(`Hebung = ${ergebnis} mm`);
-        } else {
-          setDialogVisible(true);
-          setResult("Hebung = 0 mm");
-        }
-      } else {
-        console.log("Darf nicht leer sein");
-        setResult("Darf nicht leer sein");
-      }
-      setIstWert("");
-      setAwert("");
-      document.getElementById("inputIst").value = "";
-      document.getElementById("aWert").value = "";
-    } catch (error) {
-      console.log(error);
+
+  function handleChangeIstWert(event){
+    setIstWert(Number(event.target.value)); // Den aktuell Eingegeben Wert nehmen und in istWert speichern
+  }
+  function handleChangeAwert(event){
+    setAwert(Number(event.target.value)); // Den aktuell Eingegeben Wert nehmen und in aWert speichern
+  }
+  // Funktion um zu schauen ob sich etwas im Input befindet
+  function checkEingabe(){
+    if(istWert !== "" && aWert !== ""){
+      console.log("Jap");
+    }else{
+      alert("Beide Felder müssen ausgefüllt sein!");
     }
-  };
+  }
+  // Funktion um zu schauen ob der Awert negativ oder positiv ist
+  function checkAWert(){
+    
+    if(aWert < 0){
+      console.log("A Wert ist negativ");
+      console.log(`Eingabe: ${aWert}`);
+      // Wenn der A wert negativ ist muss er zur abgelesen hebung addiert werden
+      const result = istWert + Math.abs(aWert);
+      setErgebnis(result);
+      setDialogVisible(true);
+      console.log(`Rechnung = ${istWert} + (${aWert})`);
+      console.log(`Hebung = ${result} mm`);
+      // Wenn das Ergebnis negatig ist dann ist das Gleis zu hoch, wenn nciht habe ich Hebung
+      if(result < 0){
+        setAnzeigeErgebnis(`Hebung = ${result} mm zu Hoch!`);
+      }
+      else if(result > 0){
+        setAnzeigeErgebnis(`Hebung = ${result} mm`);
+      }
+      else{
+        setAnzeigeErgebnis("Hebung = 0 mm");
+      }
+      
+      
+    }
+    else if(aWert > 0){
+      console.log("A Wert ist positiv");
+      console.log(`Eingabe: ${aWert}`);
+      // Wenn der A Wert positiv ist muss er weggezählt werden von der eingabe also ist
+      const result = istWert - aWert;
+      setErgebnis(result);
+      setDialogVisible(true);
+      console.log(`Rechnung = ${istWert} - ${aWert}`);
+      console.log(`Hebung = ${result} mm`);
+      setAnzeigeErgebnis(`Hebung = ${result} mm`);
+      // Wenn das Ergebnis negatig ist dann ist das Gleis zu hoch, wenn nciht habe ich Hebung
+      if(result < 0){
+        setAnzeigeErgebnis(`Hebung = ${result} mm zu Hoch!`);
+      }
+      else if(result > 0){
+        setAnzeigeErgebnis(`Hebung = ${result} mm`);
+      }
+      else{
+        setAnzeigeErgebnis("Hebung = 0 mm");
+      }
+    }
+    else{
+      console.log("A Wert = 0 mm");
+      console.log(`Eingabe ${aWert}`);
+      
+    }
+    setIstWert("");
+    setAwert("");
+    document.getElementById("inputIst").value = "";
+    document.getElementById("inputaWert").value = "";
+  }
+
 
   return (
     <div className={styles.hauptcontainer}>
@@ -77,21 +95,21 @@ export default function Hebungsrechner() {
       <div className={styles.card}>
         <p className={styles.description}>A Wert Rechner</p>
         <input
-          onChange={abfrageIstWert}
+          onChange={handleChangeIstWert}
           id="inputIst"
           type="number"
           placeholder="Abgelesener Wert an der Messlatte in mm"
           className={styles.inputField}
         />
         <input
-          onChange={abfrageAwert}
-          id="aWert"
+          onChange={handleChangeAwert}
+          id="inputaWert"
           type="number"
           placeholder="A Wert in mm (wenn vorhanden)"
           className={styles.inputField}
         />
         <button
-          onClick={berechnung}
+          onClick={programm}
           type="button"
           className={styles.calculateButton}
         >
@@ -99,7 +117,7 @@ export default function Hebungsrechner() {
         </button>
       </div>
       <div className={styles.ergebnisContainer}>
-        <dialog open={dialogVisible} className={styles.dialog}>{result}</dialog>
+        {<dialog open={dialogVisible} className={styles.dialog}>{anzeigeErgebnis}</dialog>}
       </div>
     </div>
   );
