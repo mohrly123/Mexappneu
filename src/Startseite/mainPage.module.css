@@ -17,6 +17,8 @@
 .hauptContainer button {
     padding: 10px 20px;
     font-size: 1rem;
+    width: 55vw;
+    margin: 7px;
     color: #fff;
     background-color: #007bff;
     border: none;

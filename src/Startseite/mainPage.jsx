@@ -9,6 +9,9 @@ export default function MainPage() {
             <Link to="/hebungsrechner">
                 <button type="button">Hebungsrechner</button>
             </Link>
+            <Link to="/verschiebungsrechner">
+                <button type="button">Verschiebungsrechner</button>
+            </Link>
             
         </div>
     );
