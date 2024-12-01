@@ -9,14 +9,37 @@ export default function Verschiebungsrechner(){
     const [istWert, setIstWert] = useState("");
 
     function handleSollWert(event){
-        setSollWert(event.target.value);
+        setSollWert(Number(event.target.value));
     }
     function handleIstWert(event){
-        setIstWert(event.target.value);
+        setIstWert(Number(event.target.value));
     }
     const programm = () => {
-        console.log(`Eingabe SOLL: ${sollWert}`);
-        console.log(`Eingabe IST: ${istWert}`);
+        let ergebnis = 0;
+        if(sollWert && istWert){
+            console.log(`Eingabe SOLL: ${sollWert}`);
+            console.log(`Eingabe IST: ${istWert}`);
+            // Wenn bei der Eingabe der IST größer als das Soll ist DANN IST - SOLL
+            // Und Verschiebung nach RECHTS!
+            if(istWert > sollWert){
+                ergebnis = istWert - sollWert;
+                console.log(`${istWert} - ${sollWert} = ${ergebnis}`);
+                console.log(`${ergebnis} mm nach Rechts schieben!`);
+            }
+            // Wenn bei der Eingabe der IST kleiner ist als das Soll DANN SOLL - IST
+            // Und Verschiebung nach LINKS!
+            else if( istWert < sollWert){
+                ergebnis = sollWert - istWert;
+                console.log(`${sollWert} - ${istWert} = ${ergebnis}`);
+                console.log(`${ergebnis} mm nach Links schieben`);
+            }
+            else if(istWert === sollWert){
+                console.log("0 mm Verschiebung");
+            }
+        }
+        else{
+            alert("Es müssen alle Felder ausgefüllt werden!");
+        }
     }
 
 
@@ -25,12 +48,16 @@ export default function Verschiebungsrechner(){
         <div className={styles.hauptcontainer}>
             <div className={styles.card}>
                 <p>Verschiebungsrechner</p>
+                <label htmlFor="inputSoll">Sollwert</label>
                 <input
+                    id="inputSoll"
                     onChange={handleSollWert}
                     type="number"
                     placeholder="SOLL Wert in mm"
                 />
+                <label htmlFor="inputIst">Istwert</label>
                 <input
+                    id="inputIst"
                     onChange={handleIstWert} 
                     type="number"
                     placeholder="IST Wert in mm"
