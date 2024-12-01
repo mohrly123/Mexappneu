@@ -55,3 +55,17 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+
+.ergebnisContainer dialog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin-top: 5%;
+    height: 5%;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 8px;
+}

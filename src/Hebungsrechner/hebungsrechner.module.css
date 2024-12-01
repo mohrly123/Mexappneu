@@ -16,9 +16,10 @@ body {
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 3%;
+    margin-top: 10%;
 }
 
 .card {
@@ -32,13 +33,14 @@ body {
     border-radius: 8px;
     width: 80%;
     max-width: 500px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: hsl(0, 7%, 72%);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 
 .description {
-    font-size: 1.2rem;
-    color: #555;
+    font-size: 1.3rem;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 input {
@@ -87,11 +89,18 @@ input::placeholder {
 }
 
 .dialog {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
     border: none;
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
-    color: #333;
+    font-size: 1.5rem;
+    color: #d42f2f;
+    width: 65%;
+    height: 2%;
+    background-color: hsl(0, 7%, 80%);
 }

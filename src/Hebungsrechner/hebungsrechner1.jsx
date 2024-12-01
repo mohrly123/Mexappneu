@@ -91,9 +91,9 @@ export default function Hebungsrechner() {
 
   return (
     <div className={styles.hauptcontainer}>
-      <h1 className={styles.title}>Hebungsrechner</h1>
+      <h1 className={styles.title}>Berechnung Hebung mit A Wert</h1>
       <div className={styles.card}>
-        <p className={styles.description}>A Wert Rechner</p>
+        <p className={styles.description}><u>A Wert Rechner</u></p>
         <input
           onChange={handleChangeIstWert}
           id="inputIst"
