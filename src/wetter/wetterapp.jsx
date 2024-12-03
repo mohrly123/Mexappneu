@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 function Wetter(){
     const [wetter, setWetter] = useState("");
+    const [ort, setOrt] = useState("Vienna");
 
     // Wetter funktion
     async function abfrageWetter(city) {
@@ -15,6 +16,7 @@ function Wetter(){
             }
             let data = await response.json();
             setWetter(data.main.temp);
+            console.log(data);
             console.log(wetter);
         }
         catch(error){
@@ -23,18 +25,34 @@ function Wetter(){
     }
 
     useEffect(() => {
-        abfrageWetter("Villach");
+        abfrageWetter("ort");
     }, []);
 
     const programmWetter = () => {
-        abfrageWetter("Villach");
+        abfrageWetter(ort);
+    }
+
+    const handleChangeInput = (event) => {
+        setOrt(event.target.value);
     }
 
 
 
     return(
         <div className={styles.hauptContainer}>
-            <button onClick={programmWetter} type="button">Wetter Test</button>
+            <div className={styles.card}>
+                <h2>Wetter Abfrage</h2>
+                <input
+                    type="text"
+                    placeholder="Ort eingeben"
+                    onChange={handleChangeInput}
+                />
+                <button
+                    onClick={programmWetter}
+                    type="button"
+                >Wetter Test</button>
+            </div>
+            
         </div>
     );
 }
