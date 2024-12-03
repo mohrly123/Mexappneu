@@ -12,6 +12,9 @@ export default function MainPage() {
             <Link to="/verschiebungsrechner">
                 <button type="button">Verschiebungsrechner</button>
             </Link>
+            <Link to="/wetterapp">
+                <button type="button">Wetter App</button>
+            </Link>
             
         </div>
     );
