@@ -6,7 +6,7 @@ export default function Hebungsrechner() {
   
   const [istWert, setIstWert] = useState("");
   const [aWert, setAwert] = useState("");
-  const [ergebnis, setErgebnis] = useState(0);
+  {const [ergebnis, setErgebnis] = useState(0);
   const [dialogVisible, setDialogVisible] = useState(false);
   const [anzeigeErgebnis, setAnzeigeErgebnis] = useState("");
 
@@ -116,9 +116,9 @@ export default function Hebungsrechner() {
           Berechnen
         </button>
       </div>
-      <div className={styles.ergebnisContainer}>
-        {<dialog open={dialogVisible} className={styles.dialog}>{anzeigeErgebnis}</dialog>}
-      </div>
+      <h2>{anzeigeErgebnis}</h2>
+      
     </div>
   );
+}
 }
