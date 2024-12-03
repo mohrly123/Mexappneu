@@ -6,8 +6,8 @@ export default function Hebungsrechner() {
   
   const [istWert, setIstWert] = useState("");
   const [aWert, setAwert] = useState("");
-  {const [ergebnis, setErgebnis] = useState(0);
-  const [dialogVisible, setDialogVisible] = useState(false);
+  const [ergebnis, setErgebnis] = useState(0);
+  
   const [anzeigeErgebnis, setAnzeigeErgebnis] = useState("");
 
   // Programm selbst
@@ -40,7 +40,7 @@ export default function Hebungsrechner() {
       // Wenn der A wert negativ ist muss er zur abgelesen hebung addiert werden
       const result = istWert + Math.abs(aWert);
       setErgebnis(result);
-      setDialogVisible(true);
+      
       console.log(`Rechnung = ${istWert} + (${aWert})`);
       console.log(`Hebung = ${result} mm`);
       // Wenn das Ergebnis negatig ist dann ist das Gleis zu hoch, wenn nciht habe ich Hebung
@@ -62,7 +62,7 @@ export default function Hebungsrechner() {
       // Wenn der A Wert positiv ist muss er weggezählt werden von der eingabe also ist
       const result = istWert - aWert;
       setErgebnis(result);
-      setDialogVisible(true);
+      
       console.log(`Rechnung = ${istWert} - ${aWert}`);
       console.log(`Hebung = ${result} mm`);
       setAnzeigeErgebnis(`Hebung = ${result} mm`);
@@ -121,4 +121,4 @@ export default function Hebungsrechner() {
     </div>
   );
 }
-}
+

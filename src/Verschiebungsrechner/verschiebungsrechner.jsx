@@ -7,7 +7,7 @@ export default function Verschiebungsrechner(){
 
     const [sollWert, setSollWert] = useState("");
     const [istWert, setIstWert] = useState("");
-    const [dialogVisible, setDialogVisible] = useState(false);
+   
     const[verschiebung, setVerschiebung] = useState("");
 
     function handleSollWert(event){
@@ -27,7 +27,7 @@ export default function Verschiebungsrechner(){
                 ergebnis = istWert - sollWert;
                 console.log(`${istWert} - ${sollWert} = ${ergebnis}`);
                 console.log(`${ergebnis} mm nach Rechts schieben!`);
-                setDialogVisible(true);
+                
                 setVerschiebung(`${ergebnis} mm nach Rechts schieben`);
             }
             // Wenn bei der Eingabe der IST kleiner ist als das Soll DANN SOLL - IST
@@ -36,12 +36,12 @@ export default function Verschiebungsrechner(){
                 ergebnis = sollWert - istWert;
                 console.log(`${sollWert} - ${istWert} = ${ergebnis}`);
                 console.log(`${ergebnis} mm nach Links schieben`);
-                setDialogVisible(true);
+                
                 setVerschiebung(`${ergebnis} mm nach Links schieben`);
             }
             else if(istWert === sollWert){
                 console.log("0 mm Verschiebung");
-                setDialogVisible(true);
+                
                 setVerschiebung(`0 mm Verschiebung`);
             }
         document.getElementById("inputSoll").value = "";
@@ -78,9 +78,8 @@ export default function Verschiebungsrechner(){
                     onClick={programm}
                 >Berechnen</button>
             </div>
-            <div className={styles.ergebnisContainer}>
-                <dialog open={dialogVisible}>{verschiebung}</dialog>
-            </div>
+            <h2>{verschiebung}</h2>
+            
         </div>
     );
 }
